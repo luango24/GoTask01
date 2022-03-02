@@ -11,5 +11,5 @@ From terminal execute go run cmd/api/main.go
 Then from your favorite browser application  navigate to localhost:5000
 
 ## Comments
-There are other package that can be used for API like Gin Web Framework (Gin).
-The effort to copmplete the task was 2 hours.
+There are other packages that can be used for API creation like Gin Web Framework (Gin).
+The effort to complete the task was 2 hours.
