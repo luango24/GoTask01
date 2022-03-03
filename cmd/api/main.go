@@ -2,10 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
 
 type User struct {
@@ -25,16 +26,18 @@ type Joke struct {
 }
 
 func main() {
-	http.HandleFunc("/", Task)
+	r := gin.Default()
+	r.GET("/", GinTask)
+	err := r.Run(":5000")
 
-	err := http.ListenAndServe(":5000", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-//Combine two existing webservices in a single response to the user
-func Task(w http.ResponseWriter, r *http.Request) {
+//Combine two existing webservices in a single response to the user using gin
+func GinTask(c *gin.Context) {
+
 	response01, err := http.Get("https://names.mcquay.me/api/v0/")
 
 	if err != nil {
@@ -65,5 +68,7 @@ func Task(w http.ResponseWriter, r *http.Request) {
 	var jokeResponse JokeResponse
 	json.Unmarshal(byteJokeResponse, &jokeResponse)
 
-	fmt.Fprint(w, jokeResponse.Value.CurrentJoke)
+	c.JSON(200, gin.H{
+		"result": jokeResponse.Value.CurrentJoke,
+	})
 }
