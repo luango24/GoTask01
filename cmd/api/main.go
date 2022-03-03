@@ -53,6 +53,7 @@ func GinTask(c *gin.Context) {
 
 	json.Unmarshal(byteUser, &user)
 
+	//We are taking the values as coming from the service without any encode or decode operation
 	response02, err := http.Get("http://api.icndb.com/jokes/random?firstName=" + user.Name + "&lastName=" + user.LastName + "&limitTo=nerdy")
 
 	if err != nil {
@@ -68,6 +69,7 @@ func GinTask(c *gin.Context) {
 	var jokeResponse JokeResponse
 	json.Unmarshal(byteJokeResponse, &jokeResponse)
 
+	//We are returning json content
 	c.JSON(200, gin.H{
 		"result": jokeResponse.Value.CurrentJoke,
 	})
