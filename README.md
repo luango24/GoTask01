@@ -2,13 +2,11 @@
 Task 01 in Go
 
 ## Description
-This is a response for a task of create an services that merge two existing services
-It is in Golang language and make uses of features like th standart HTTP package in Go, Handler Function, Json Parsing and string formating 
+This is a response for a request of create a services that merge two existing services.
+It is in Golang language and make uses of features like the standard HTTP package in Go, Handler Function, Json Parsing and string formating 
 
 ## Executing program
-Clone or download the repo
-From terminal execute go run cmd/api/main.go
-Then from your favorite browser application  navigate to localhost:5000
+Clone or download the repo from a terminal execute "go run cmd/api/main.go", from your favorite browser application  navigate to localhost:5000
 
 ## Comments
 There are other packages that can be used for API creation like Gin Web Framework (Gin).
