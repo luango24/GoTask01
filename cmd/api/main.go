@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 )
 
 type User struct {
@@ -50,9 +49,8 @@ func Task(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.Unmarshal(byteUser, &user)
-	newName := user.Name + " " + user.LastName
 
-	response02, err := http.Get("http://api.icndb.com/jokes/random?firstName=John&lastName=Doe&limitTo=nerdy")
+	response02, err := http.Get("http://api.icndb.com/jokes/random?firstName=" + user.Name + "&lastName=" + user.LastName + "&limitTo=nerdy")
 
 	if err != nil {
 		log.Fatal(err)
@@ -67,5 +65,5 @@ func Task(w http.ResponseWriter, r *http.Request) {
 	var jokeResponse JokeResponse
 	json.Unmarshal(byteJokeResponse, &jokeResponse)
 
-	fmt.Fprint(w, strings.Replace(jokeResponse.Value.CurrentJoke, "John Doe", newName, -1))
+	fmt.Fprint(w, jokeResponse.Value.CurrentJoke)
 }
