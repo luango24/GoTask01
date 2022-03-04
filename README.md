@@ -11,3 +11,6 @@ Clone or download the repo from a terminal execute "go run cmd/api/main.go", fro
 
 ## Comments
 The effort to complete the task was 3 hours.
+
+## Test
+For the test we used k6 (https://k6.io/), in the folder k6Test you can find the script source and the result. It is using 1-15 concurrent users.
